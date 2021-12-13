@@ -34,7 +34,7 @@ all = comm.gather(result, root=0)
 
 if rank == 0:
     result = sum(all, [])
-    result = pd.DataFrame(result, columns=['stock_one', 'stock_two', "corr"])
+    result = pd.DataFrame(result, columns=["stock_one", "stock_two", "corr"])
     result = result.sort_values(by=['corr'])
     print(result)
-    result.to_csv('result.txt', header=None, index=None, sep=' ', mode='a')
+    result.to_csv("result.txt", header=None, index=None, sep=" ", mode="a")
