@@ -14,12 +14,12 @@ rank = comm.Get_rank()
 size = comm.Get_size() # n cores
 
 if rank == 0:
-    df = pd.read_csv("datanormal.csv")  # CREATE COMBINATIONS
-    companies = list(pd.read_csv("stocknames.txt", header=None, names=["company"]).company)
+    df = pd.read_csv("data.csv")  # CREATE COMBINATIONS
+    companies = list(df.columns)
     companies = list(combinations(companies, 2))
     data = [{"names": (compone, comptwo), "data": (np.array((df[compone])), np.array((df[comptwo])))} for
             compone, comptwo in companies]
-    data = data[:3305]
+    #data = data[:3305]
     data = [i for i in np.array_split(data, size)]
 else:
     data = None
@@ -34,7 +34,7 @@ all = comm.gather(result, root=0)
 
 if rank == 0:
     result = sum(all, [])
-    result = pd.DataFrame(result, columns=["stock_one", "stock_two", "corr"])
+    result = pd.DataFrame(result, columns=['stock_one', 'stock_two', "corr"])
     result = result.sort_values(by=['corr'])
     print(result)
-    result.to_csv("result.txt", header=None, index=None, sep=" ", mode="a")
+    result.to_csv('result.txt', header=None, index=None, sep=' ', mode='a')
