@@ -4,4 +4,4 @@
 #SBATCH --output=res.out
 #SBATCH --error=res.err
 
-mpirun python3 app.py
+mpirun python3 main.py
