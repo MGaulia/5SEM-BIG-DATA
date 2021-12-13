@@ -19,7 +19,6 @@ if rank == 0:
     companies = list(combinations(companies, 2))
     data = [{"names": (compone, comptwo), "data": (np.array((df[compone])), np.array((df[comptwo])))} for
             compone, comptwo in companies]
-    #data = data[:3305]
     data = [i for i in np.array_split(data, size)]
 else:
     data = None
