@@ -1,5 +1,5 @@
 # Individual project
-### This project is to demonstrate usage of parallel computing
+### This project is to demonstrate the usage of parallel computing
 Run program with: <br>
 ````bash
 mpirun -n 4 python main.py
